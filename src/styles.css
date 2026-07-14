@@ -1,0 +1,102 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-cinnabar: var(--cinnabar);
+  --color-jade: var(--jade);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--cinnabar);
+  --color-card: var(--card);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--ink);
+  --color-primary-foreground: var(--paper);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--ink);
+  --color-accent: var(--cinnabar);
+  --color-accent-foreground: var(--paper);
+  --color-destructive: oklch(0.55 0.2 27);
+  --color-destructive-foreground: var(--paper);
+
+  --font-display: 'Ma Shan Zheng', cursive;
+  --font-serif: 'Noto Serif SC', 'Noto Serif', serif;
+  --font-latin: 'Lora', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'Lora', Georgia, serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  --paper: hsl(38 25% 96%);
+  --ink: hsl(36 10% 12%);
+  --background: hsl(38 25% 96%);
+  --foreground: hsl(36 10% 12%);
+  --muted: hsl(36 10% 12% / 0.06);
+  --muted-foreground: hsl(36 10% 12% / 0.55);
+  --cinnabar: hsl(0 72% 51%);
+  --jade: hsl(145 15% 40%);
+  --border: hsl(36 10% 12% / 0.08);
+  --card: hsl(0 0% 100%);
+  --secondary: hsl(36 10% 12% / 0.06);
+}
+
+.dark {
+  --paper: hsl(30 8% 8%);
+  --ink: hsl(38 25% 94%);
+  --background: hsl(30 8% 8%);
+  --foreground: hsl(38 25% 94%);
+  --muted: hsl(38 25% 94% / 0.08);
+  --muted-foreground: hsl(38 25% 94% / 0.55);
+  --cinnabar: hsl(0 65% 55%);
+  --jade: hsl(145 20% 55%);
+  --border: hsl(38 25% 94% / 0.1);
+  --card: hsl(30 8% 12%);
+  --secondary: hsl(38 25% 94% / 0.06);
+}
+
+@keyframes reveal-ink {
+  0% { opacity: 0; filter: blur(10px); transform: scale(0.95); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-reveal-ink {
+  animation: reveal-ink 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@utility animate-slide-up {
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-latin);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: hsl(0 72% 51% / 0.15); }
+}
